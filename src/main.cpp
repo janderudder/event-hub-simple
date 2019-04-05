@@ -23,7 +23,7 @@ int main()
     EventReactor reactor;
     Object obj;
 
-    reactor.registerCallback<Event1>([](Event1 ev) {
+    reactor.registerCallback<Event1>([](const Event1& ev) {
         std::cout << "Event1: " << ev.x << ", " << ev.y << "\n";
     });
 
@@ -35,8 +35,8 @@ int main()
         std::cout << "Event2 without data.\n";
     });
 
-    reactor.registerCallback<const Object&>([](const Object& o) {
-        o.sayHi();
+    reactor.registerCallback<Object>([](const Object& obj) {
+        obj.sayHi();
     });
 
     Event1 ev1{0,1};
